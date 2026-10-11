@@ -1,0 +1,237 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ------------------------------------------------------------------
+   THEMES
+   Each theme is a block of CSS variables (space-separated R G B values).
+   To add a theme: copy a block, change the id + colors, then add the same
+   id to src/data/themes.ts.
+------------------------------------------------------------------- */
+
+:root,
+[data-theme="cyber"] {
+  color-scheme: dark;
+  --bg: 10 10 15;
+  --surface: 17 17 26;
+  --text: 230 237 243;
+  --muted: 139 148 158;
+  --accent: 34 211 238;
+  --accent2: 167 139 250;
+  --accent3: 74 222 128;
+  --ink: 255 255 255;
+  --on-accent: 0 0 0;
+}
+
+[data-theme="synthwave"] {
+  color-scheme: dark;
+  --bg: 13 2 33;
+  --surface: 26 5 51;
+  --text: 247 228 255;
+  --muted: 170 140 205;
+  --accent: 255 42 160;
+  --accent2: 0 240 255;
+  --accent3: 255 222 89;
+  --ink: 255 255 255;
+  --on-accent: 13 2 33;
+}
+
+[data-theme="matrix"] {
+  color-scheme: dark;
+  --bg: 2 10 4;
+  --surface: 6 20 10;
+  --text: 190 255 200;
+  --muted: 100 160 110;
+  --accent: 0 255 65;
+  --accent2: 0 200 140;
+  --accent3: 180 255 0;
+  --ink: 255 255 255;
+  --on-accent: 0 0 0;
+}
+
+[data-theme="dracula"] {
+  color-scheme: dark;
+  --bg: 40 42 54;
+  --surface: 50 52 68;
+  --text: 248 248 242;
+  --muted: 150 155 185;
+  --accent: 189 147 249;
+  --accent2: 255 121 198;
+  --accent3: 80 250 123;
+  --ink: 255 255 255;
+  --on-accent: 40 42 54;
+}
+
+[data-theme="ember"] {
+  color-scheme: dark;
+  --bg: 15 8 6;
+  --surface: 28 15 10;
+  --text: 255 237 225;
+  --muted: 185 145 125;
+  --accent: 255 120 40;
+  --accent2: 255 70 90;
+  --accent3: 255 200 60;
+  --ink: 255 255 255;
+  --on-accent: 15 8 6;
+}
+
+[data-theme="ocean"] {
+  color-scheme: dark;
+  --bg: 5 12 28;
+  --surface: 10 22 48;
+  --text: 224 240 255;
+  --muted: 130 160 200;
+  --accent: 56 140 255;
+  --accent2: 0 220 200;
+  --accent3: 130 200 255;
+  --ink: 255 255 255;
+  --on-accent: 5 12 28;
+}
+
+[data-theme="arctic"] {
+  color-scheme: light;
+  --bg: 246 248 252;
+  --surface: 255 255 255;
+  --text: 20 28 45;
+  --muted: 90 100 120;
+  --accent: 14 116 230;
+  --accent2: 124 58 237;
+  --accent3: 5 150 105;
+  --ink: 0 0 0;
+  --on-accent: 255 255 255;
+}
+
+[data-theme="solar"] {
+  color-scheme: light;
+  --bg: 255 250 240;
+  --surface: 255 255 255;
+  --text: 40 28 20;
+  --muted: 120 100 85;
+  --accent: 217 70 20;
+  --accent2: 190 24 93;
+  --accent3: 161 98 7;
+  --ink: 0 0 0;
+  --on-accent: 255 255 255;
+}
+
+/* Color-changing themes: the accent colors (and for "chroma", the background tint)
+   are animated by JavaScript in ThemeSwitcher.tsx. These are just the starting values. */
+[data-theme="aurora"] {
+  color-scheme: dark;
+  --bg: 8 10 18;
+  --surface: 16 18 30;
+  --text: 232 238 248;
+  --muted: 140 150 170;
+  --accent: 34 211 238;
+  --accent2: 167 139 250;
+  --accent3: 74 222 128;
+  --ink: 255 255 255;
+  --on-accent: 0 0 0;
+}
+
+[data-theme="chroma"] {
+  color-scheme: dark;
+  --bg: 14 8 20;
+  --surface: 24 14 34;
+  --text: 240 235 250;
+  --muted: 160 150 180;
+  --accent: 255 80 160;
+  --accent2: 120 100 255;
+  --accent3: 60 230 200;
+  --ink: 255 255 255;
+  --on-accent: 0 0 0;
+}
+
+/* ------------------------------------------------------------------ */
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: rgb(var(--bg));
+  color: rgb(var(--text));
+  font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+::selection {
+  background: rgb(var(--accent) / 0.3);
+}
+
+@keyframes gradient-shift {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.gradient-text {
+  background: linear-gradient(
+    90deg,
+    rgb(var(--accent)),
+    rgb(var(--accent2)),
+    rgb(var(--accent3)),
+    rgb(var(--accent))
+  );
+  background-size: 300% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: gradient-shift 6s ease infinite;
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+.blob {
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: 0.2;
+  animation: float 8s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+.cursor-blink {
+  animation: blink 1s step-end infinite;
+}
+
+/* Glow effects that follow the theme's accent color */
+.glow-btn:hover {
+  box-shadow: 0 0 25px rgb(var(--accent) / 0.5);
+}
+.glow-card:hover {
+  box-shadow: 0 0 25px rgb(var(--accent) / 0.25);
+}
+.glow-dot {
+  box-shadow: 0 0 12px rgb(var(--accent));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
