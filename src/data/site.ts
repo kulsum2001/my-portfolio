@@ -6,7 +6,7 @@ export const site = {
   typingLines: [
     "Full-Stack Developer",
     "React & Django Developer",
-    "Python & REST API Developer",
+    
   ],
   tagline:
     "I build and ship full-stack web apps, from secure APIs to clean interfaces.",
